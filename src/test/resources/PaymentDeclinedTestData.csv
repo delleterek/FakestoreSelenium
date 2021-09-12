@@ -1,0 +1,4 @@
+cardNumber,expDate,cvc,expectedAlertMessage
+4000000000000002,0333,123,Karta została odrzucona.
+4000000000000069,0333,123,Karta wygasła.
+4000000000000127,0333,123,Kod bezpieczeństwa karty jest nieprawidłowy.

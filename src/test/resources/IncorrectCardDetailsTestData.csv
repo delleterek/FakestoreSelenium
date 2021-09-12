@@ -1,0 +1,6 @@
+cardNumber,expDate,cvc,expectedAlertMessage
+4242424242424243, 0323, 123, Numer karty nie jest prawidłowym numerem karty kredytowej.
+4242424242424242, 0318, 123, Rok ważności karty upłynął w przeszłości
+4242424242424242, 0323,"", Kod bezpieczeństwa karty jest niekompletny.
+4242424242424242,"", 123, Data ważności karty jest niekompletna.
+"", 0323, 123, Numer karty jest niekompletny.
