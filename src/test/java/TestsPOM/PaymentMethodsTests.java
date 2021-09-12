@@ -27,6 +27,7 @@ public class PaymentMethodsTests extends BaseTest {
                         testData.getContact().getPhone(),
                         testData.getContact().getUnregisteredEmailAddress())
                 .scrollToPaymentArea()
+                .waitToLoad()
                 .insertCardDetails(testData.getCard().getSecureNumber(),testData.getCard().getValidExpirationDate(),testData.getCard().getCvc())
                 .submitOrderToSwitchToStripeFrame(true)
                 .switchToStripeFrame()
@@ -50,6 +51,7 @@ public class PaymentMethodsTests extends BaseTest {
                         testData.getContact().getPhone(),
                         testData.getContact().getUnregisteredEmailAddress())
                 .scrollToPaymentArea()
+                .waitToLoad()
                 .insertCardDetails(testData.getCard().getSecureNumber(),testData.getCard().getValidExpirationDate(),testData.getCard().getCvc())
                 .submitOrderToSwitchToStripeFrame(true)
                 .switchToStripeFrame()
@@ -72,6 +74,7 @@ public class PaymentMethodsTests extends BaseTest {
                         testData.getContact().getPhone(),
                         testData.getContact().getUnregisteredEmailAddress())
                 .scrollToPaymentArea()
+                .waitToLoad()
                 .insertCardDetails(testData.getCard().getSecureDeclinedNumber(),testData.getCard().getValidExpirationDate(),testData.getCard().getCvc())
                 .submitOrderToSwitchToStripeFrame(true)
                 .switchToStripeFrame()
@@ -110,6 +113,7 @@ public class PaymentMethodsTests extends BaseTest {
                         testData.getContact().getPhone(),
                         testData.getContact().getUnregisteredEmailAddress())
                 .scrollToPaymentArea()
+                .waitToLoad()
                 .insertCardDetails(cardNumber,expDate,cvc)
                 .submitOrderUnsuccessfully(true)
                 .waitToLoad();
