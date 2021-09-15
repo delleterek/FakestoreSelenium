@@ -34,7 +34,7 @@ public class OrderPage extends BasePage {
     private By usernameInputLocator = By.cssSelector("#username");
     private By passwordInputLocator = By.cssSelector("#password");
     private By loginFormLocator = By.cssSelector(".woocommerce-form-login-toggle");
-    private By outerStripeFrameLocator = By.xpath(".//body/div/iframe[@allow='payment *']");
+    private By outerStripeFrameLocator = By.xpath(".//body/div/iframe");
     private String innerStripeFrameLocator = "challengeFrame";
     private String moreInnerStripeFrameLocator = "acsFrame";
     //private By moreInnerStripeFrameLocator =
@@ -157,6 +157,11 @@ public class OrderPage extends BasePage {
     }
 
     public OrderPage authorizePaymentForDeclinedCard() {
+        try{
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException ie){
+        }
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(moreInnerStripeFrameLocator));
         wait.until(ExpectedConditions.elementToBeClickable(authorizePaymentButtonLocator)).submit();
         driver.switchTo().defaultContent();
