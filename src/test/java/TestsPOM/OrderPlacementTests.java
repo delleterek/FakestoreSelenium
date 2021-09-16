@@ -1,5 +1,6 @@
 package TestsPOM;
 
+import PageObjects.AccountPage;
 import PageObjects.CategoriesPage;
 import PageObjects.OrderPage;
 import PageObjects.OrderSummaryPage;
@@ -79,6 +80,8 @@ public class OrderPlacementTests extends BaseTest {
     public void orderPlacementWithCreatingAnAccountTest() {
         CategoriesPage categoriesPage = new CategoriesPage(driver).goToShop(configuration.getBaseUrl());
         categoriesPage.closeDemoNotice();
+        AccountPage accountPage = new AccountPage(driver);
+        accountPage.header.goToMyAccount().logIn(testData.getContact().getUnregisteredEmailAddress(),testData.getContact().getUnregisteredPassword()).deleteAccount();
         OrderSummaryPage orderSummary = categoriesPage
                 .openRandomCategory().openRandomProduct().addToBasket().header.goToOrder().scrollToOrderReview()
                 .fillInPersonalData(
@@ -100,7 +103,7 @@ public class OrderPlacementTests extends BaseTest {
                 ()-> assertTrue(orderSummary.isProductQuantityDisplayed(), "Product quantity is not displayed"),
                 ()-> assertTrue(orderSummary.isProductNameDisplayed(), "Product name is not displayed")
         );
-        orderSummary.header.goToMyAccount().deleteAccount();
+        //orderSummary.header.goToMyAccount().deleteAccount();
     }
 
     @Test

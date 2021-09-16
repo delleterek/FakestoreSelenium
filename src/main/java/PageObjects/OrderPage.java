@@ -60,8 +60,13 @@ public class OrderPage extends BasePage {
     }
 
     public OrderPage waitToLoad() {
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(LoadingAnimationLocator, 0));
-        wait.until(ExpectedConditions.numberOfElementsToBe(LoadingAnimationLocator, 0));
+        try{
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException ie){
+        }
+        //wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(LoadingAnimationLocator, 0));
+        //wait.until(ExpectedConditions.numberOfElementsToBe(LoadingAnimationLocator, 0));
         return this;
     }
 
