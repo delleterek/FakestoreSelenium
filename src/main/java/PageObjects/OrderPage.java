@@ -18,11 +18,14 @@ public class OrderPage extends BasePage {
     private By paymentAreaLocator = By.cssSelector("[class='payment_box payment_method_stripe']");
     private By LoadingAnimationLocator = By.cssSelector("div.blockUI");
     private By orderReviewLocator = By.cssSelector("h1.entry-title");
-    private int cardNumberFrameLocator = 0;
+    private By cardNumberFrameLocator = By.xpath(".//div[@id='stripe-card-element']/div/iframe");
+    //private int cardNumberFrameLocator = 0;
     private By cardNumberInputLocator = By.cssSelector("input[name='cardnumber']");
-    private int expDateFrameLocator = 1;
+    private By expDateFrameLocator = By.xpath(".//div[@id='stripe-exp-element']/div/iframe");
+    //private int expDateFrameLocator = 1;
     private By expDateInputLocator = By.cssSelector("input[name='exp-date']");
-    private int cvcFrameLocator = 2;
+    private By cvcFrameLocator = By.xpath(".//div[@id='stripe-cvc-element']/div/iframe");
+    //private int cvcFrameLocator = 2;
     private By cvcInputLocator = By.cssSelector("input[name='cvc']");
     private By errorMessageLocator = By.cssSelector(".woocommerce-error");
     private By createAccountLocator = By.cssSelector("#createaccount");
@@ -44,7 +47,7 @@ public class OrderPage extends BasePage {
     public OrderPage(WebDriver driver){
         super(driver);
         header = new HeaderSection(driver);
-        wait = new WebDriverWait(driver, 60);
+        wait = new WebDriverWait(driver, 20);
     }
 
     public OrderPage scrollToOrderReview() {
@@ -61,7 +64,7 @@ public class OrderPage extends BasePage {
 
     public OrderPage waitToLoad() {
         try{
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         }
         catch(InterruptedException ie){
         }
@@ -75,9 +78,13 @@ public class OrderPage extends BasePage {
         WebElement cardNumberInput = wait.until(ExpectedConditions.visibilityOfElementLocated(cardNumberInputLocator));
         slowType(cardNumberInput, cardNumber);
         driver.switchTo().parentFrame();
-        driver.switchTo().frame(expDateFrameLocator).findElement(expDateInputLocator).sendKeys(expDate);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(expDateFrameLocator));
+        driver.findElement(expDateInputLocator).sendKeys(expDate);
+        //driver.switchTo().frame(expDateFrameLocator).findElement(expDateInputLocator).sendKeys(expDate);
         driver.switchTo().parentFrame();
-        driver.switchTo().frame(cvcFrameLocator).findElement(cvcInputLocator).sendKeys(cvc);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(cvcFrameLocator));
+        driver.findElement(cvcInputLocator).sendKeys(cvc);
+        //driver.switchTo().frame(cvcFrameLocator).findElement(cvcInputLocator).sendKeys(cvc);
         driver.switchTo().defaultContent();
         return this;
     }
