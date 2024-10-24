@@ -42,7 +42,11 @@ public class DriverFactory {
         switch (Browser.valueOf(configuration.getBrowser())) {
             case CHROME:
                 WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                if (configuration.isHeadless()){
+                    options.addArguments("headless");
+                }
+                return new ChromeDriver(options);
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();

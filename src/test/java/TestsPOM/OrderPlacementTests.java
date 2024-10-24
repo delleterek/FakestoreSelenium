@@ -4,7 +4,7 @@ import PageObjects.AccountPage;
 import PageObjects.CategoriesPage;
 import PageObjects.OrderPage;
 import PageObjects.OrderSummaryPage;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
